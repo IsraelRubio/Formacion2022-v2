@@ -1,15 +1,15 @@
-package israelontanilla.es.formacion2022
+package israelontanilla.es.formacion2022.ui.main
 
 import android.os.Bundle
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import israelontanilla.es.formacion2022.R
+import israelontanilla.es.formacion2022.common.BaseActivity
 import israelontanilla.es.formacion2022.databinding.ActivityScrollingBinding
 
-class ScrollingActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityScrollingBinding
 
