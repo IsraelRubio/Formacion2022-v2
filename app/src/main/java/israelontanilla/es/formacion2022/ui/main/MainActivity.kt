@@ -11,12 +11,13 @@ import israelontanilla.es.formacion2022.databinding.ActivityScrollingBinding
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityScrollingBinding
+    private val binding: ActivityScrollingBinding by lazy {
+        ActivityScrollingBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
