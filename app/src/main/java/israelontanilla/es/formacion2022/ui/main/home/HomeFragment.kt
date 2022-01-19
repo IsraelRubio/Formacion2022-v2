@@ -3,14 +3,16 @@ package israelontanilla.es.formacion2022.ui.main.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import israelontanilla.es.formacion2022.common.BaseFragment
 import israelontanilla.es.formacion2022.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
-    private val vm by viewModel<HomeViewModel>()
+    private val vm by sharedViewModel<HomeViewModel>()
 
     private val homeAdapter by lazy {
         HomeAdapter()
@@ -25,6 +27,7 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
         with(binding) {
             rvHome.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
             rvHome.adapter = homeAdapter
+            rvHome.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
         vm.onInit()
         setupBinding()

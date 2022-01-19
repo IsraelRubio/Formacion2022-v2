@@ -8,12 +8,16 @@ import android.view.MenuItem
 import israelontanilla.es.formacion2022.R
 import israelontanilla.es.formacion2022.common.BaseActivity
 import israelontanilla.es.formacion2022.databinding.ActivityScrollingBinding
+import israelontanilla.es.formacion2022.ui.main.home.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity() {
 
     private val binding: ActivityScrollingBinding by lazy {
         ActivityScrollingBinding.inflate(layoutInflater)
     }
+
+    private val vm by viewModel<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +27,7 @@ class MainActivity : BaseActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         binding.toolbarLayout.title = title
         binding.fab.setOnClickListener { view ->
+            vm.onActionDownloadClicked()
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }

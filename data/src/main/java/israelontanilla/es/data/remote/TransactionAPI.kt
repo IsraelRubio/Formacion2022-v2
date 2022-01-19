@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface TransactionAPI {
 
-    @GET("transactions/list")
+    @GET("transactions.json")
     suspend fun getTransactions(): List<TransactionModel>
 }

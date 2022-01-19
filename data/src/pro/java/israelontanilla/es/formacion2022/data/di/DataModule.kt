@@ -1,6 +1,8 @@
-package israelontanilla.es.data.di
+package israelontanilla.es.formacion2022.data.di
 
-import israelontanilla.es.data.remote.MockInterceptor
+import androidx.room.Room
+import israelontanilla.es.data.BuildConfig
+import israelontanilla.es.data.database.AppDatabase
 import israelontanilla.es.data.remote.TransactionAPI
 import israelontanilla.es.data.repository.TransaccionRepository
 import okhttp3.OkHttpClient
@@ -17,20 +19,29 @@ val dataModule = module {
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(MockInterceptor(get()))
             .build()
     }
 
     single <TransactionAPI> {
         Retrofit.Builder()
             .client(get())
-            .baseUrl("https://www.back.com")
+            .baseUrl(BuildConfig.SERVER_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TransactionAPI::class.java)
     }
 
     single<TransaccionRepository> {
-        TransaccionRepository(get())
+        TransaccionRepository(get(), get())
     }
+
+    single {
+        Room.databaseBuilder(
+            get(),
+            AppDatabase::class.java,
+            BuildConfig.DB_NAME)
+            .build()
+    }
+
+
 }
